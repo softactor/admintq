@@ -270,67 +270,27 @@ function array_to_csv__($array, $download = "") {
     fclose($f) or show_error("Can't close php://output");
     return ob_get_clean();
 }
-    function save_edit_default_printing($data){
-    global $conn;
-    $event_name         =   $data['event_name'];
-    $template_type_id   =   $data['template_type_id'];
-    $tableWithWhere     =   "default_printing where event_name='$event_name'";
-    $printInfo          =   getDataRowIdAndTable($tableWithWhere);
-    if(isset($printInfo) && !empty($printInfo)){
-        // Update into default_printing Table:
-        $sqlUpdate  =   "UPDATE default_printing SET template_type_id='$template_type_id' WHERE event_name='$event_name'";
-        $conn->query($sqlUpdate);
-    }else{
-        // Insert into default_printing Table:
-        $fields = [
-            'template_type_id'  => $template_type_id,
-            'event_name'        => $event_name
-        ];
-        $insert = saveData('default_printing', $fields);
-    }
-}
-    function save_edit_custom_printing($data){
-        global $conn;
-        $event_name         =   $data['event_name'];
-        $custom_config      =   $data['custom_config'];
-        $tableWithWhere     =   "custom_printing  where event_name='$event_name'";
-        $printInfo          =   getDataRowIdAndTable($tableWithWhere);
-        if(isset($printInfo) && !empty($printInfo)){
-            // Update into default_printing Table:
-            $sqlDelete  =   "DELETE FROM custom_printing WHERE event_name='$event_name'";
-            $conn->query($sqlDelete);
-            // Insert into default_printing Table:
-            foreach($custom_config as $fields){
-                $insert = saveData('custom_printing', $fields);
-            }
-        }else{
-            // Insert into default_printing Table:
-            foreach($custom_config as $fields){
-                $insert = saveData('custom_printing', $fields);
-            }
-        }
-    }
-    function csvToArray($filename = '', $delimiter = ',') {
-        if (!file_exists($filename) || !is_readable($filename))
-            return false;
+function csvToArray($filename = '', $delimiter = ',') {
+    if (!file_exists($filename) || !is_readable($filename))
+        return false;
 
-        $header = null;
-        $data = array();
-        $count  =   1;
-        if (($handle = fopen($filename, 'r')) !== false) {
-            while ($row = fgetcsv($handle)) {
-                if($count==1){
-                    $count++;
-                    continue;
-                }
-                $data[]     =     $row;
-                
+    $header = null;
+    $data = array();
+    $count  =   1;
+    if (($handle = fopen($filename, 'r')) !== false) {
+        while ($row = fgetcsv($handle)) {
+            if($count==1){
+                $count++;
+                continue;
             }
-            fclose($handle);
-        }
+            $data[]     =     $row;
 
-        return $data;
-    } // end of method
+        }
+        fclose($handle);
+    }
+
+    return $data;
+} // end of method
 
 function hasAccessPermission($user_id, $page_name, $accessType) {
     global $conn;
