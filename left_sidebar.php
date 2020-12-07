@@ -12,15 +12,15 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li class="active"><a href="index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="index.php"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
+              <li class="active"><a href="role_list.php"><i class="fa fa-circle-o"></i> Role</a></li>
+              <li><a href="user_list.php"><i class="fa fa-circle-o"></i> Users</a></li>
           </ul>
         </li>
-        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
-        <li class="header">LABELS</li>
-        <li><a href="#"><i class="fa fa-circle-o text-red"></i> <span>Important</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> <span>Warning</span></a></li>
-        <li><a href="#"><i class="fa fa-circle-o text-aqua"></i> <span>Information</span></a></li>
+        <li class="header">LINKS</li>
+        <li><a href="employee_list.php"><i class="fa fa-circle-o text-red"></i> <span>Employee</span></a></li>
+        <li><a href="product_list.php"><i class="fa fa-circle-o text-yellow"></i> <span>Products</span></a></li>
+        <li><a href="vendor_list.php"><i class="fa fa-circle-o text-aqua"></i> <span>Vendor</span></a></li>
+        <li><a href="customer_list.php"><i class="fa fa-circle-o text-aqua"></i> <span>Customer</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
